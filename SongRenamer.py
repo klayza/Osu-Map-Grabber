@@ -6,10 +6,28 @@ import shutil
 # Gets rid of the series of numbers at the start of the .mp3 as well as the osu junk files so you don't have to
 
 # Initialization
+while True:
+    Destination = input("Enter your destination folder: ")
+    if Destination == "df":
+        Destination = "D:/Media/Osu! Songs" # Directory the destination will exist in
+    elif not os.path.exists(Destination):
+        res = input("This path doesn't exist, would you like to create this path anyways?").upper()
+        if "Y" in res:
+            os.makedirs(Destination)
+            break
+        print("\n")
 
-Destination = "C:/Users/user/Desktop/Computer/Music/#Osu Buffer" # Directory the destination will exist in
-Folder = "C:/Users/user/AppData/Local/osu!/Songs"     # Directory of unprocessed songs to retrieve(Osu song folder)
-Indicator = Destination + "/" + "#####INDICATOR#####"   # Control folder: Stores creation time value for comparison
+    Folder = input("Enter the folder containing your beatmaps: ")
+    if Folder == "df":
+        Folder = "C:/Users/clayj/AppData/Local/osu!/Songs"     # Directory of unprocessed songs to retrieve(Osu song folder)
+        if not os.path.exists(Folder):
+            print("Osu folder not found\n")
+    elif not os.path.exists(Folder):
+        print("Osu folder not found\n")
+    break
+
+Indicator = Destination + "/#Completed Songs#/" + "#INDICATOR#"   # Control folder: Stores creation time value for comparison
+
 
 # This terribly written function clears out the junk files that are usually only meant for osu songs
 # Walks down path of given path and compares the file with any of the conditional statements for deletion
@@ -77,13 +95,22 @@ def osuFileCleanser(startpath):
 def osuFileGrabber():
     b_count = 0
     s_count = 0
+    dl_all = False
+    # If this is the first time running and the user has pre-existing songs
+    if not os.path.exists(Indicator):
+        os.makedirs(Indicator)
+        dl_all = True
     for folder in os.listdir(Folder):
-        if os.path.getctime(Folder + "/" + folder) == os.path.getctime(Indicator):
+        if dl_all:
+            shutil.copytree(Folder + "/" + folder, Destination + "/" + folder, dirs_exist_ok=True)  # src, dst
+            b_count += 1
             continue
+        elif os.path.getctime(Folder + "/" + folder) == os.path.getctime(Indicator):
             s_count += 1
+            continue
         elif os.path.getctime(Folder + "/" + folder) < os.path.getctime(Indicator):
-            continue
             s_count += 1
+            continue
         elif int(os.path.getctime(Folder + "/" + folder)) > int(os.path.getctime(Indicator)):
             shutil.copytree(Folder + "/" + folder, Destination + "/" + folder, dirs_exist_ok=True)  # src, dst
             b_count += 1
