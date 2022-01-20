@@ -1,5 +1,4 @@
 import os
-import time
 import shutil
 
 # This script will retrieve the .mp3 and background image into a contained folder from your osu song folder
@@ -11,22 +10,22 @@ while True:
     if Destination == "df":
         Destination = "D:/Media/Osu! Songs" # Directory the destination will exist in
     elif not os.path.exists(Destination):
-        res = input("This path doesn't exist, would you like to create this path anyways?").upper()
+        res = input("This path doesn't exist, would you like to create this path anyways? ").upper()
         if "Y" in res:
             os.makedirs(Destination)
-            break
-        print("\n")
 
     Folder = input("Enter the folder containing your beatmaps: ")
     if Folder == "df":
         Folder = "C:/Users/clayj/AppData/Local/osu!/Songs"     # Directory of unprocessed songs to retrieve(Osu song folder)
         if not os.path.exists(Folder):
             print("Osu folder not found\n")
+            continue
     elif not os.path.exists(Folder):
         print("Osu folder not found\n")
+        continue
     break
 
-Indicator = Destination + "/#Completed Songs#/" + "#INDICATOR#"   # Control folder: Stores creation time value for comparison
+Indicator = Destination + "/#INDICATOR#"   # Control folder: Stores creation time value for comparison
 
 
 # This terribly written function clears out the junk files that are usually only meant for osu songs
