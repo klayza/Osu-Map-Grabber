@@ -1,9 +1,17 @@
 # Osu-Map-Grabber
-Takes songs from your osu! folder, and processes them to into a music playlist when provided a source and destination
+Copies songs and backgrounds from your osu folder, and processes them to into a music playlist when provided a source and destination
+
+# Install
+`git clone https://github.com/klayza/Osu-Map-Grabber`
+
+# Run
+`python SongRenamer.py`<br />
+Mind the indicator folder, it's just used to track the last time you ran this program
+
+# Help
+If there are problems, just delete the destination folder and try again ¯\\_(ツ)_/¯
 
 # Todo<br />
-- Support multiple audio file in one folder renaming<br />
-- Move the processed songs to their respective folders<br />
 - Change Artist tags using their title<br />
 - (Maybe) Have songs copied to phone with control <br />
 - Store a config or json file that can store the source and destination<br />
