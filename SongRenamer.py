@@ -8,7 +8,7 @@ import shutil
 while True:
     Destination = input("Enter your destination folder: ")
     if Destination == "df":
-        Destination = "D:/Media/Osu! Songs" # Directory the destination will exist in
+        Destination = "C:/Users/cw1a/Music/Osu!" # Directory the destination will exist in
     elif not os.path.exists(Destination):
         res = input("This path doesn't exist, would you like to create this path anyways? ").upper()
         if "Y" in res:
@@ -16,7 +16,7 @@ while True:
 
     Folder = input("Enter the folder containing your beatmaps: ")
     if Folder == "df":
-        Folder = "C:/Users/clayj/AppData/Local/osu!/Songs"     # Directory of unprocessed songs to retrieve(Osu song folder)
+        Folder = "C:/Users/cw1a/AppData/Local/osu!/Songs"     # Directory of unprocessed songs to retrieve(Osu song folder)
         if not os.path.exists(Folder):
             print("Osu folder not found\n")
             continue
