@@ -1,10 +1,10 @@
-# Clayton Wieberg 6/7/2022
-# Manage osu! maps by making copies of each beatmap's song and background image
-# AKA SongRenamer V2
-
 from distutils import extension
 import os
 import shutil
+
+
+# Manage osu! maps by making copies of each beatmap's song and background image into a playlist
+# AKA SongRenamer V2
 
 
 '''
@@ -53,7 +53,6 @@ def Main():
             continue
         source = f"{unprocessed_folder}/{folder}"
         full_path_files = []
-        error = False   # Used if a folder doesn't have a song
 
         # Walks through the folder and grabs it's contents
 
@@ -134,8 +133,6 @@ def stripID(folder):
         else:
             temp_string += char
     return temp_string.strip()
-
-
 
 
 Main()
